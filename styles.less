@@ -1,0 +1,49 @@
+@import "_mixins.less";
+
+@button-color: #06c;
+@light-cyan: #4abfc5;
+
+.interochimp-form {
+  .border-radius(.2em);
+  background: @light-cyan;
+  h4 {
+    color: #FFF;
+    padding-bottom: .5em;
+    font-weight: bold;
+  }
+  padding: 10px;
+  label {
+    color: #FFF;
+  }
+
+  input {
+    border: none;
+    border-left: 2px solid #e0e0e0;
+    border-bottom: 2px solid #e0e0e0;
+    border-right: 2px solid #e0e0e0;
+    box-shadow: none;
+    display: block;
+    width: 90%;
+    .border-radius(0);
+  }
+
+  .submit {
+    padding: 1em 0;
+  }
+
+  button {
+    border: 1px solid lighten(@button-color, 5%);
+    .gradient(lighten(@button-color, 20%), @button-color);
+
+    padding: .5em 1em;
+    color: #FFF;
+    .border-radius(.5em);
+    outline: none !important;
+    &:hover {
+      .gradient(lighten(@button-color, 22%), lighten(@button-color, 2%));
+    }
+    &:active {
+      .gradient(@button-color, lighten(@button-color, 15%));
+    }
+  }
+}
