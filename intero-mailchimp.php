@@ -14,8 +14,9 @@ defined('ABSPATH') or die("No script kiddies please!");
 
 define('INTEROCHIMP_NONCE', 'interochimp_nonce');
 
-require_once 'InteroChimpSubscribeWidget.php';
-require_once 'InteroChimpFormHandler.php';
+require_once 'Config.php';
+require_once 'SubscribeWidget.php';
+require_once 'FormHandler.php';
 
 function interochimp_scripts() {
 
@@ -25,9 +26,22 @@ function interochimp_scripts() {
         array('jquery'), '1.0.0', true
     );
 
+    wp_enqueue_script(
+        'intero-mainchimp-custombox',
+        plugins_url(InterochimpConfig::$CUSTOMBOX_JS, __FILE__),
+        array('jquery'), '1.0.0', true
+    );
+
     wp_enqueue_style(
-        'intero-mainchimp-main',
-        plugins_url('/css/styles.css', __FILE__)
+        'intero-mainchimp-css-custombox',
+        plugins_url(InterochimpConfig::$CUSTOMBOX_CSS, __FILE__)
+    );
+
+    wp_enqueue_style(
+        'intero-mainchimp-css-main',
+        plugins_url('/css/styles.css', __FILE__),
+        array(),
+        /*filemtime(__DIR__.'/css/styles.css').*/"4.0.2"
     );
 
     wp_localize_script( 'intero-mainchimp-main', 'InteroChimpAjax', array(
@@ -47,8 +61,9 @@ add_action('widgets_init', function () {
 });
 
 if ( is_admin() ) {
-    add_action('wp_ajax_interochimp_action', array('InteroChimpFormHandler', 'handle'));
-    add_action('wp_ajax_nopriv_interochimp_action', array('InteroChimpFormHandler', 'handle'));
+    $handler = new InteroChimpFormHandler("49c7f97915c90a99bb6bbaad8ccbfd7e-us9");
+    add_action('wp_ajax_interochimp_action', array($handler, 'handle'));
+    add_action('wp_ajax_nopriv_interochimp_action', array($handler, 'handle'));
 }
 
 

@@ -1,18 +1,32 @@
 !(function ($) {
 
+    $.fn.interoMailchimpSubscribe = function () {
+
+        return this.each(function () {
+            var $form = $(this);
+            if ($form.hasClass('popup')) {
+                setTimeout(function () {
+                    $.fn.custombox(document.getElementsByTagName('body')[0], {
+                        url: '#' + $form.attr('id'),
+                        overlay: true,
+                        effect: 'sign',
+                        eClose: '.interochimp-form-close'
+                    });
+                }, 1000);
+            }
+
+        });
+    };
+
+
     $(function () {
 
         var data = {
             'action': 'interochimp_action',
-            security : InteroChimpAjax.security,
-            'whatever': 1234
+            security: InteroChimpAjax.security
         };
 
-        alert(InteroChimpAjax.ajaxurl);
-
-        $.post(InteroChimpAjax.ajaxurl, data, function (response) {
-            alert('Got this from the server: ' + response);
-        });
+        $('.interochimp-form').interoMailchimpSubscribe();
 
     });
 

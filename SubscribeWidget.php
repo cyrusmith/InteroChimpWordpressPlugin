@@ -28,29 +28,32 @@ class InteroChimpSubscribeWidget extends WP_Widget
     {
 
         $title = apply_filters('widget_title', $instance['title']);
+        $isPopup = $instance['is_popup'];
 
         echo $args['before_widget'];
         ?>
-        <form action="" method="post" class="interochimp-form">
-            <?php
-            if (!empty($title)):
-                ?>
-                <h3><?php echo $args['before_title'] . $title . $args['after_title'];?></h3>
-            <?php
-            endif;
-            ?>
-            <div class="input text">
-                <label for="subscribe_email">Имя:</label>
-                <input type="text" id="subscribe_name" name="subscribe_name" placeholder="Ваше имя"/>
-            </div>
-            <div class="input text">
-                <label for="subscribe_email">Email:</label>
-                <input type="email" id="subscribe_email" name="subscribe_email" placeholder="Ваш email"/>
-            </div>
-            <div class="input submit">
-                <button type="submit" >Отправить</button>
-            </div>
-        </form>
+        <div id="interoSubscribe1" class="interochimp-form <?php echo $isPopup ? 'popup' : '' ?>">
+            <a href="javascript:void(0)" class="interochimp-form-close">&nbsp;</a>
+            <form action="" method="post">
+                <h4><?php
+                    echo empty($title) ? 'Подпишитесь на рассылку' : $title;
+                    ?></h4>
+                <fieldset>
+                    <div class="input text">
+                        <label for="subscribe_email">Имя:</label>
+                        <input type="text" id="subscribe_name" name="subscribe_name" placeholder="Ваше имя"/>
+                    </div>
+                    <div class="input text">
+                        <label for="subscribe_email">Email:</label>
+                        <input type="email" id="subscribe_email" name="subscribe_email" placeholder="Ваш email"/>
+                    </div>
+                    <div class="input submit">
+                        <button type="submit" class="btn btn-info">Подписаться</button>
+                    </div>
+                    <p>Никакого спама. Только полезная информация.</p>
+                </fieldset>
+            </form>
+        </div>
         <?php
         echo $args['after_widget'];
     }
@@ -67,15 +70,23 @@ class InteroChimpSubscribeWidget extends WP_Widget
 
         if (isset($instance['title'])) {
             $title = $instance['title'];
+            $isPopup = $instance['is_popup'] && true;
         } else {
             $title = __('Subscribe to news', 'text_domain');
+            $isPopup = false;
         }
+
         ?>
         <p>
             <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
                    name="<?php echo $this->get_field_name('title'); ?>" type="text"
-                   value="<?php echo esc_attr($title); ?>">
+                   value="<?php echo esc_attr($title); ?>"/>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('is_popup'); ?>"><?php _e('Is popup:'); ?></label>
+            <input type="checkbox" id="<?php echo $this->get_field_id('is_popup'); ?>"
+                   name="<?php echo $this->get_field_name('is_popup'); ?>" <?php echo $isPopup ? 'checked="checked"' : ''?>/>
         </p>
     <?php
     }
@@ -94,7 +105,7 @@ class InteroChimpSubscribeWidget extends WP_Widget
     {
         $instance = array();
         $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
-
+        $instance['is_popup'] = $new_instance['is_popup'];
         return $instance;
     }
 }

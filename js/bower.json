@@ -1,0 +1,29 @@
+{
+  "name": "interoMailchimp",
+  "version": "0.0.1",
+  "homepage": "http://interosite.ru",
+  "authors": [
+    "cyrusmith <info@interosite.ru>"
+  ],
+  "description": "js interactions for intero mailchimp wp plugin",
+  "main": "main",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "mailchimp",
+    "interosite"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "custombox": "1.*"
+  }
+}
