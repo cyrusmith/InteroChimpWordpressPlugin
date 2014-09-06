@@ -1,32 +1,38 @@
 !(function ($) {
 
-    $.fn.interoMailchimpSubscribe = function () {
-
-        return this.each(function () {
-            var $form = $(this);
-            if ($form.hasClass('popup')) {
-                setTimeout(function () {
-                    $.fn.custombox(document.getElementsByTagName('body')[0], {
-                        url: '#' + $form.attr('id'),
-                        overlay: true,
-                        effect: 'sign',
-                        eClose: '.interochimp-form-close'
-                    });
-                }, 1000);
-            }
-
-        });
-    };
-
-
     $(function () {
 
-        var data = {
-            'action': 'interochimp_action',
-            security: InteroChimpAjax.security
-        };
+        $('#interoSubscribe1').each(function () {
 
-        $('.interochimp-form').interoMailchimpSubscribe();
+            var $this = $(this),
+                $form = $this.find('form:eq(0)'),
+                $name = $form.find('input[name="subscribe_name"]'),
+                $email = $form.find('input[name="subscribe_email"]'),
+                $submit = $form.find('button[type="submit"]');
+
+            $this.interoLeadPopup('init', {
+                timeout: 1000,
+                closeSelector: '.interochimp-form-close'
+            });
+
+            $this.on('interosite_lead_popup_close', function (e) {
+                $(this).interoLeadPopup('schedule', 5);
+            });
+
+            $form.submit(function () {
+                return false;
+            });
+
+            var data = {
+                'action': 'interochimp_action',
+                security: InteroChimpAjax.security
+            };
+
+
+
+
+
+        });
 
     });
 

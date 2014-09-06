@@ -10,4 +10,6 @@
 class InterochimpConfig {
     static $CUSTOMBOX_JS = "/js/bower_components/custombox/src/jquery.custombox.js";
     static $CUSTOMBOX_CSS = "/js/bower_components/custombox/src/jquery.custombox.css";
+    static $JQUERY_COOKIE_JS = "/js/bower_components/jquery.cookie/jquery.cookie.js";
+    static $LEADPOPUP_JS = "/js/jquery.interosite.leadpopup.js";
 }

@@ -23,13 +23,25 @@ function interochimp_scripts() {
     wp_enqueue_script(
         'intero-mainchimp-main',
         plugins_url('/js/main.js', __FILE__),
-        array('jquery'), '1.0.0', true
+        array('jquery-interosite-leadpopup'), '1.0.0', true
     );
 
     wp_enqueue_script(
         'intero-mainchimp-custombox',
         plugins_url(InterochimpConfig::$CUSTOMBOX_JS, __FILE__),
         array('jquery'), '1.0.0', true
+    );
+
+    wp_enqueue_script(
+        'intero-mainchimp-jquery-cookie',
+        plugins_url(InterochimpConfig::$JQUERY_COOKIE_JS, __FILE__),
+        array('jquery'), '1.0.0', true
+    );
+
+    wp_enqueue_script(
+        'jquery-interosite-leadpopup',
+        plugins_url(InterochimpConfig::$LEADPOPUP_JS, __FILE__),
+        array('intero-mainchimp-jquery-cookie', 'intero-mainchimp-custombox'), '1.0.0', true
     );
 
     wp_enqueue_style(

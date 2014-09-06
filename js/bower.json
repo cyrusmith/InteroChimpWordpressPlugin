@@ -24,6 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "custombox": "1.*"
+    "custombox": "1.*",
+    "jquery.cookie": "1.*"
   }
 }
