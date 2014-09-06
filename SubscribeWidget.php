@@ -39,17 +39,19 @@ class InteroChimpSubscribeWidget extends WP_Widget
                     echo empty($title) ? 'Подпишитесь на рассылку' : $title;
                     ?></h4>
                 <fieldset>
-                    <div class="input text">
+                    <div class="form-group input text">
                         <label for="subscribe_email">Имя:</label>
                         <input type="text" id="subscribe_name" name="subscribe_name" placeholder="Ваше имя"/>
                     </div>
-                    <div class="input text">
+                    <div class="form-group input text">
                         <label for="subscribe_email">Email:</label>
                         <input type="email" id="subscribe_email" name="subscribe_email" placeholder="Ваш email"/>
                     </div>
                     <div class="input submit">
                         <button type="submit" class="btn btn-info">Подписаться</button>
                     </div>
+
+                    <div class="emailloader">&nbsp;</div>
                     <p>Никакого спама. Только полезная информация.</p>
                 </fieldset>
             </form>
