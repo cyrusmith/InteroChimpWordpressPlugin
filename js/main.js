@@ -53,7 +53,8 @@
             if (isProcessing) return;
 
             var $name = $('#interoSubscribe1 input[name="subscribe_name"]'),
-                $email = $('#interoSubscribe1 input[name="subscribe_email"]');
+                $email = $('#interoSubscribe1 input[name="subscribe_email"]'),
+                $listId = $('#interoSubscribe1 input[name="subscribe_list_id"]');
 
             var email = $email.val().trim();
 
@@ -64,7 +65,10 @@
 
             var data = {
                 'action': 'interochimp_action',
-                security: InteroChimpAjax.security
+                security: InteroChimpAjax.security,
+                name: $name.val(),
+                email: $email.val(),
+                listId: $listId.val()
             };
 
             startProcessing();
@@ -73,9 +77,11 @@
                 url: InteroChimpAjax.ajaxurl,
                 data: data,
                 success: function (response) {
-                    alert(response);
+                    if (response.status != "OK") {
+                        alert(response.error);
+                    }
                 },
-                error: function() {
+                error: function () {
                     $(this).interoLeadPopup('schedule', 5);
                 },
                 complete: function () {

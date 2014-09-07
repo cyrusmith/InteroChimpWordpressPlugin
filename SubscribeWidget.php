@@ -29,6 +29,7 @@ class InteroChimpSubscribeWidget extends WP_Widget
 
         $title = apply_filters('widget_title', $instance['title']);
         $isPopup = $instance['is_popup'];
+        $listId = $instance['list_id'];
 
         echo $args['before_widget'];
         ?>
@@ -53,6 +54,8 @@ class InteroChimpSubscribeWidget extends WP_Widget
 
                     <div class="emailloader">&nbsp;</div>
                     <p>Никакого спама. Только полезная информация.</p>
+
+                    <input type="hidden" name="subscribe_list_id" value="<?php echo $listId;?>"/>
                 </fieldset>
             </form>
         </div>
@@ -72,11 +75,12 @@ class InteroChimpSubscribeWidget extends WP_Widget
 
         if (isset($instance['title'])) {
             $title = $instance['title'];
-            $isPopup = $instance['is_popup'] && true;
         } else {
             $title = __('Subscribe to news', 'text_domain');
-            $isPopup = false;
         }
+
+        $isPopup = $instance['is_popup'] && true;
+        $listId = $instance['list_id'];
 
         ?>
         <p>
@@ -89,6 +93,11 @@ class InteroChimpSubscribeWidget extends WP_Widget
             <label for="<?php echo $this->get_field_id('is_popup'); ?>"><?php _e('Is popup:'); ?></label>
             <input type="checkbox" id="<?php echo $this->get_field_id('is_popup'); ?>"
                    name="<?php echo $this->get_field_name('is_popup'); ?>" <?php echo $isPopup ? 'checked="checked"' : ''?>/>
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('list_id'); ?>"><?php _e('List id:'); ?></label>
+            <input type="text" id="<?php echo $this->get_field_id('list_id'); ?>"
+                   name="<?php echo $this->get_field_name('list_id'); ?>" value="<?php echo $listId; ?>"/>
         </p>
     <?php
     }
@@ -108,6 +117,7 @@ class InteroChimpSubscribeWidget extends WP_Widget
         $instance = array();
         $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
         $instance['is_popup'] = $new_instance['is_popup'];
+        $instance['list_id'] = $new_instance['list_id'];
         return $instance;
     }
 }
