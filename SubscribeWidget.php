@@ -50,7 +50,7 @@ class InteroChimpSubscribeWidget extends WP_Widget
                         <input type="email" id="subscribe_email" name="subscribe_email" placeholder="Ваш email"/>
                     </div>
                     <div class="input submit">
-                        <button type="submit" class="btn btn-info">Подписаться</button>
+                        <button type="submit" class="btn btn-info">Подписаться</button><a href="javascript:void(0)" class="deny">Нет, спасибо</a>
                     </div>
 
                     <div class="emailloader">&nbsp;</div>

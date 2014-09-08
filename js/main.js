@@ -35,13 +35,18 @@
 
         $subscribeContainer.on('interosite_lead_popup_close', function (e) {
             if (!isProcessing) {
-                $(this).interoLeadPopup('schedule', 5);
+                $subscribeContainer.interoLeadPopup('schedule', 5);
             }
 
         });
 
         $(document).on('submit', '#interoSubscribe1 form', function () {
             return false;
+        });
+
+        $(document).on('click', '#interoSubscribe1 .deny', function () {
+            $subscribeContainer.interoLeadPopup('schedule', 30);
+            $subscribeContainer.interoLeadPopup('close');
         });
 
         $(document).on('focus', '#interoSubscribe1 input[name="subscribe_email"]', function () {
@@ -82,11 +87,11 @@
                         noty({text: thankyou});
                     }
                     else {
-                        $(this).interoLeadPopup('schedule', 5);
+                        $subscribeContainer.interoLeadPopup('schedule', 5);
                     }
                 },
                 error: function () {
-                    $(this).interoLeadPopup('schedule', 5);
+                    $subscribeContainer.interoLeadPopup('schedule', 5);
                 },
                 complete: function () {
                     isProcessing = false;

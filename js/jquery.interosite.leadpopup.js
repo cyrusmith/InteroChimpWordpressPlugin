@@ -72,7 +72,7 @@
         schedule: function (days) {
             days = parseInt(days);
             if (!days) return;
-            $.cookie(LeadPopup.COOKIE_KEY, true, {
+            $.cookie(this.cookieKey, true, {
                 expires: days
             });
         },
