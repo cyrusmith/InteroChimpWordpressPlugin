@@ -25,6 +25,7 @@
   ],
   "dependencies": {
     "custombox": "1.*",
-    "jquery.cookie": "1.*"
+    "jquery.cookie": "1.*",
+     "noty":"2.*"
   }
 }

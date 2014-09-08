@@ -54,7 +54,8 @@
 
             var $name = $('#interoSubscribe1 input[name="subscribe_name"]'),
                 $email = $('#interoSubscribe1 input[name="subscribe_email"]'),
-                $listId = $('#interoSubscribe1 input[name="subscribe_list_id"]');
+                $listId = $('#interoSubscribe1 input[name="subscribe_list_id"]'),
+                thankyou = $('#interoSubscribe1 input[name="subscribe_thankyou"]').val();
 
             var email = $email.val().trim();
 
@@ -77,8 +78,11 @@
                 url: InteroChimpAjax.ajaxurl,
                 data: data,
                 success: function (response) {
-                    if (response.status != "OK") {
-                        alert(response.error);
+                    if (response.status == "OK") {
+                        noty({text: thankyou});
+                    }
+                    else {
+                        $(this).interoLeadPopup('schedule', 5);
                     }
                 },
                 error: function () {

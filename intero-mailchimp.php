@@ -44,6 +44,12 @@ function interochimp_scripts() {
         array('intero-mainchimp-jquery-cookie', 'intero-mainchimp-custombox'), '1.0.0', true
     );
 
+    wp_enqueue_script(
+        'jquery-interosite-noty',
+        plugins_url(InterochimpConfig::$NOTY_JS, __FILE__),
+        array('jquery'), '1.0.0', true
+    );
+
     wp_enqueue_style(
         'intero-mainchimp-css-custombox',
         plugins_url(InterochimpConfig::$CUSTOMBOX_CSS, __FILE__)
